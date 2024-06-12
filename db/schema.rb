@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_12_130544) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_12_134058) do
   create_table "addresses", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "street"
@@ -20,6 +20,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_12_130544) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "dishes", force: :cascade do |t|
+    t.integer "restaurant_id", null: false
+    t.string "name"
+    t.float "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["restaurant_id"], name: "index_dishes_on_restaurant_id"
+  end
+
+  create_table "restaurants", force: :cascade do |t|
+    t.integer "address_id", null: false
+    t.string "name"
+    t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_restaurants_on_address_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -32,4 +50,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_12_130544) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "dishes", "restaurants"
+  add_foreign_key "restaurants", "addresses"
 end

@@ -16,6 +16,17 @@ module OrderNow
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w(assets tasks))
 
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'  # Pode substituir '*' por um domínio específico, como 'https://example.com'
+        
+        resource '*',
+          headers: :any,
+          methods: [:get, :post, :put, :patch, :delete, :options, :head],
+          credentials: true  # Defina como true se você precisar enviar cookies ou cabeçalhos de autenticação
+      end
+    end
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

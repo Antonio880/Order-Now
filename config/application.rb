@@ -23,7 +23,7 @@ module OrderNow
         resource '*',
           headers: :any,
           methods: [:get, :post, :put, :patch, :delete, :options, :head],
-          credentials: true  # Defina como true se você precisar enviar cookies ou cabeçalhos de autenticação
+          credentials: false  # Defina como true se você precisar enviar cookies ou cabeçalhos de autenticação
       end
     end
 

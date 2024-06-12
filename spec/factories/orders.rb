@@ -1,10 +1,14 @@
+# spec/factories/orders.rb
 FactoryBot.define do
   factory :order do
-    user { nil }
-    restaurant { nil }
-    delivery_person { nil }
-    address { nil }
-    status { "MyString" }
-    total_price { 1.5 }
+    association :user
+    association :payment
+    association :restaurant
+    association :delivery_person
+    association :address
+    status { 'pending' }
+    total_price { 100.0 }
   end
 end
+
+# Outras fábricas (user, payment, restaurant, delivery_person, address) devem estar definidas corretamente
